@@ -1,0 +1,17 @@
+<h1 ><%= title %></h1>
+
+<h3> congratulations for our new students</h3>
+<h4>dont forget to pay yos bills</h4>
+
+<ul>
+  <!-- //ejseach shandika use foreach -->
+  <% for( let i = 0; i < mahasiswa.length; i++ ) { %>
+    <li class="list-unstyled"> 
+        <%= mahasiswa[i].nama %> 
+      </li>
+      <li class="list-unstyled">
+        <%= mahasiswa[i].age %>
+      </li>
+  <% } %>
+</ul>
+
