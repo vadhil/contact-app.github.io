@@ -13,6 +13,41 @@ fs.writeFileSync(dataPath, '[]', 'utf8');
 }
 
 
+const loadContact = () =>{
+    const fileBuffer = fs.readFileSync(dataPath, 'utf8');
+    const contacts = JSON.parse(fileBuffer);
+    return contacts;
+}
+
+const findContact = (name) =>{
+    const contacts = loadContact();
+    const contact = contacts.find( (contact) => contact.name === name)
+    return contact;
+};
+
+const saveContact = (contacts) => {
+    fs.writeFileSync('./data/contact.json', JSON.stringify(contacts))
+}
+
+const addContact = (contact) => {
+    const contacts = loadContact();
+    contacts.push(contact);
+    saveContact(contacts);
+}
+
+module.exports = { loadContact, findContact, addContact };
+
+
+// const deleteContact = (name) =>{ }
+
+
+
+// console.log(findContact('fadhil'));
+
+
+
+
+
 // const profile = {
 //     name: 'fadhil',
 //     phone: '08953254w',
@@ -32,14 +67,13 @@ fs.writeFileSync(dataPath, '[]', 'utf8');
 // // fs.close();
 
 
-const loadContact = () =>{
-    const contacts = fs.readFileSync(dataPath, 'utf8');
-    const contact = JSON.parse(contacts);
-    return contact;
-}
+
+// Array.find()
+//take every contact json
+
+
 
 //it will be relatif to app js 
-module.exports = { loadContact };
 
 
 

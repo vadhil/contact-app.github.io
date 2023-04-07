@@ -1,31 +1,42 @@
 
-<h1 class="bg-danger">contact</h1>
-
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">id</th>
-        <th scope="col">name</th>
-        <th scope="col">phone</th>
-        <th scope="col">email</th>
-        <th scope="col">info</th>
-      </tr>
-    </thead>
-    <tbody>
-      
-        <% contacts.forEach((contact, i) => { i++ %>
+<!-- <h1 class="text-center">contact</h1> -->
+<div class="row">
+  <div class="col-8">
+    <div class="">
+      <a href="/contact/add">add contact</a>
+    </div>
+    <table class="table border border-black ">
+      <thead>
         <tr>
-        <th scope="row"><%= i %></th>
-        <td><%= contact.name %></td>
-        <td><%= contact.phone %></td>
-        <td><%= contact.email %></td>
-        <td>
-          <a href="">edit</a>
-          </td>
-
+          <th scope="col">id</th>
+          <th scope="col">name</th>
+          <th scope="col">phone</th>
+          <th scope="col">email</th>
+          <th scope="col">info</th>
         </tr>
-        <% }) %>
-       
-      
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% if (contacts.length === 0) { %>
+            <tr>
+              <td colspan="5">No contacts</td>
+              </tr>
+        <% } %>
+        
+          <% contacts.forEach((contact, i) => { i++ %>
+          <tr>
+          <th scope="row"><%= i %></th>
+          <td><%= contact.name %></td>
+          <td><%= contact.phone %></td>
+          <td><%= contact.email %></td>
+          <td>
+            <a href=" ./contact/<%= contact.name %>">edit</a>
+            </td>
+  
+          </tr>
+          <% }) %>
+         
+        
+      </tbody>
+    </table>
+  </div>
+</div>

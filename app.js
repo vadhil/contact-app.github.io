@@ -1,18 +1,14 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const app = express();
-const { loadContact } = require('./utils/contacts');
+const { loadContact, findContact, addContact } = require('./utils/contacts');
 const port = 3000;
 
-//use ejs
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
-//to make our image and css available, bcos express secure our assets
 app.use(express.static('public'));
+app.use(express.urlencoded());
 
-
-//the web route
-//we have to name the file to .ejs and use res.render so dont need to use views, i guess
 
 app.get('', (req, res) => {
     res.render('home', {
@@ -20,7 +16,6 @@ app.get('', (req, res) => {
         title: "home"
     })
 })
-
 app.get('/index', (req, res) => {
     const mahasiswa = [
         {
@@ -53,17 +48,31 @@ app.get('/contact', (req, res) => {
         layout: 'main',
         title: "contact",
         contacts
-    })
-    
+    })  
 })
+app.get('/contact/add', (req, res) => {
+    res.render('add-contact', {
+        layout: 'main',
+        title: "form add contact" 
+    })})
+
+// add data contact
+// app.post('/contact', (req, res) => {
+//     addContact(req.body);
+//     res.redirect('/');})
+
+app.get('/contact/:name', (req, res) => {
+    const contact= findContact(req.params.name);
+    res.render('detail', {
+        layout: 'main',
+        title: "halaman detail contact",
+        contact})})
 
 // res.send(`this is produk number${req.params.id}, and ${req.params.catid} `)
 app.get('/product/:id/category/:catid', (req, res) => {
 res.render('product', {
     layout:'main',
-    title: "for sale"
-})
-})
+    title: "for sale"})})
 
 //middleware routes/ catch the err route with app.use 
 app.use( (req, res) => {
