@@ -8,7 +8,8 @@ const port = 3000;
 
 //use ejs
 app.set('view engine', 'ejs');
- app.use(expressLayouts);
+app.use(expressLayouts);
+app.use(express.static('public'));
 
  app.get('', (req, res) => {
     res.render('home', {
