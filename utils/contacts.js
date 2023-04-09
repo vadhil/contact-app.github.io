@@ -13,6 +13,7 @@ fs.writeFileSync(dataPath, '[]', 'utf8');
 }
 
 
+
 const loadContact = () =>{
     const fileBuffer = fs.readFileSync(dataPath, 'utf8');
     const contacts = JSON.parse(fileBuffer);

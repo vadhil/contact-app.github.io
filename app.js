@@ -1,14 +1,17 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const app = express();
+const bodyParser = require('body-parser')
 const { loadContact, findContact, addContact } = require('./utils/contacts');
-const port = 3000;
+const port = 4000;
 
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
 app.use(express.static('public'));
-app.use(express.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
+app.use(express.urlencoded( { extended: true } ));
 
 app.get('', (req, res) => {
     res.render('home', {
@@ -50,6 +53,13 @@ app.get('/contact', (req, res) => {
         contacts
     })  
 })
+
+
+
+
+
+
+
 app.get('/contact/add', (req, res) => {
     res.render('add-contact', {
         layout: 'main',
@@ -57,9 +67,19 @@ app.get('/contact/add', (req, res) => {
     })})
 
 // add data contact
-// app.post('/contact', (req, res) => {
-//     addContact(req.body);
-//     res.redirect('/');})
+app.post('/contact', (req, res) => {
+    addContact(req.body);
+    console.log(req.body);
+    res.redirect('/contact');})
+
+
+
+
+
+
+
+
+
 
 app.get('/contact/:name', (req, res) => {
     const contact= findContact(req.params.name);
