@@ -27,7 +27,7 @@ const findContact = (name) =>{
 };
 
 const saveContact = (contacts) => {
-    fs.writeFileSync('./data/contact.json', JSON.stringify(contacts))
+    fs.writeFileSync('./data/contacts.json', JSON.stringify(contacts))
 }
 
 const addContact = (contact) => {
