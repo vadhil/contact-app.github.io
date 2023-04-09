@@ -4,6 +4,12 @@
   <div class="col-12 col-md-8 ">
     <div class="">
     </div>
+    <% if (msg.length !== 0) { %>
+      <div class="alert alert-success" role="alert">
+        <%= msg %>
+      </div>
+      
+    <% } %>
     <table  class="table  ">
       <thead >
         <tr>
